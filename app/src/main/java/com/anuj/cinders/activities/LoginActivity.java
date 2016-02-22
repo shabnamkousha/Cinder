@@ -29,6 +29,10 @@ public class LoginActivity extends FragmentActivity {
     /**
      * Obtain your client id and secret from:
      * https://foursquare.com/developers/apps
+     *
+     * NOTE: Make sure to run
+     * keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
+     * and put that hash value in the foursquare app console
      */
     private static final String CLIENT_ID = "XOVRZY35C4WWKXQR53KQGFD55HYEDUBACNSWND3D2PFW3OFY";
     private static final String CLIENT_SECRET = "SXMSMHOLQ3INMHT42DOWBF3XKKVX5IGE2XL2B5FELY5E2ZHQ";
@@ -142,8 +146,10 @@ public class LoginActivity extends FragmentActivity {
             // it to shared prefs.
             ExampleTokenStore.get().setToken(accessToken);
 
-            // Refresh UI.
-            ensureUi();
+            //Anuj
+            // Redirect to the Club Activity Intent
+            Intent i = new Intent(LoginActivity.this, ClubActivity.class);
+            startActivity(i);
 
         } else {
             if (exception instanceof FoursquareOAuthException) {
