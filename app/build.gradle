@@ -46,4 +46,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
 
+    compile 'com.foursquare:foursquare-android-oauth:1.0.3'
+
+
 }
