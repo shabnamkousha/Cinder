@@ -1,7 +1,9 @@
-package com.anuj.cinders;
+package com.anuj.cinders.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.anuj.cinders.R;
 
 public class ClubActivity extends AppCompatActivity {
 
