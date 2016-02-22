@@ -12,13 +12,16 @@ import android.view.MenuItem;
 import com.anuj.cinders.R;
 import com.anuj.cinders.adapters.ClubHomeAdapter;
 import com.anuj.cinders.dao.Club;
+import com.anuj.cinders.network.FoursquareClient;
 import com.anuj.cinders.utils.FoursquareTokenStore;
+import com.loopj.android.http.TextHttpResponseHandler;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.Header;
 
 public class ClubActivity extends AppCompatActivity {
 
@@ -42,9 +45,7 @@ public class ClubActivity extends AppCompatActivity {
 
         setupTheTimelineAdapter();
 
-        Log.i("INFO", "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ FoursquareTokenStore.get().getToken());
-
-
+        getVenuesNearMe();
 
     }
 
@@ -78,6 +79,22 @@ public class ClubActivity extends AppCompatActivity {
 
         // give our custom adapter to the recycler view
         clubViewRecyclerView.setAdapter(clubHomeAdapter);
+    }
+
+    private void getVenuesNearMe(){
+        FoursquareClient fourSquareClient = new FoursquareClient();
+
+        fourSquareClient.venueSearch(new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
+                Log.e("ERROR", "res=" + res + " statusCode=" + statusCode + " message=" + t.getMessage());
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Log.i("INFO", "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+responseString);
+            }
+        });
     }
 
 }
