@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.anuj.cinders.R;
-import com.anuj.cinders.models.ExampleTokenStore;
+import com.anuj.cinders.utils.FoursquareTokenStore;
 import com.foursquare.android.nativeoauth.FoursquareCancelException;
 import com.foursquare.android.nativeoauth.FoursquareDenyException;
 import com.foursquare.android.nativeoauth.FoursquareInvalidRequestException;
@@ -68,7 +68,7 @@ public class LoginActivity extends FragmentActivity {
      * message.
      */
     private void ensureUi() {
-        boolean isAuthorized = !TextUtils.isEmpty(ExampleTokenStore.get().getToken());
+        boolean isAuthorized = !TextUtils.isEmpty(FoursquareTokenStore.get().getToken());
 
         TextView tvMessage = (TextView) findViewById(R.id.tvMessage);
         tvMessage.setVisibility(isAuthorized ? View.VISIBLE : View.GONE);
@@ -144,7 +144,7 @@ public class LoginActivity extends FragmentActivity {
 
             // Persist the token for later use. In this example, we save
             // it to shared prefs.
-            ExampleTokenStore.get().setToken(accessToken);
+            FoursquareTokenStore.get().setToken(accessToken);
 
             //Anuj
             // Redirect to the Club Activity Intent
