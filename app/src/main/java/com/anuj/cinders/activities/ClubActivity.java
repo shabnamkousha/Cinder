@@ -12,10 +12,18 @@ import android.view.MenuItem;
 import com.anuj.cinders.R;
 import com.anuj.cinders.adapters.ClubHomeAdapter;
 import com.anuj.cinders.dao.Club;
+import com.anuj.cinders.models.VenueResponse;
 import com.anuj.cinders.network.FoursquareClient;
 import com.anuj.cinders.utils.FoursquareTokenStore;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.TextHttpResponseHandler;
 
+import java.lang.reflect.Type;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -93,6 +101,12 @@ public class ClubActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 Log.i("INFO", "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+responseString);
+                Gson gson = new GsonBuilder().create();
+
+                JsonParser parser = new JsonParser();
+                JsonObject obj = parser.parse(responseString).getAsJsonObject();
+                VenueResponse venueResponse =  gson.fromJson(obj, VenueResponse.class);
+                System.out.println("");
             }
         });
     }
