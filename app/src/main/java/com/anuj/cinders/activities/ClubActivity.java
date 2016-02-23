@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.anuj.cinders.R;
 import com.anuj.cinders.adapters.ClubHomeAdapter;
 import com.anuj.cinders.dao.Club;
+import com.anuj.cinders.models.Venue;
 import com.anuj.cinders.models.VenueResponse;
 import com.anuj.cinders.network.FoursquareClient;
 import com.anuj.cinders.utils.FoursquareTokenStore;
@@ -38,7 +39,7 @@ public class ClubActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager;
 
-    List<Club> clubs;
+    List<Venue> venues;
 
     ClubHomeAdapter clubHomeAdapter;
 
@@ -82,8 +83,8 @@ public class ClubActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         clubViewRecyclerView.setLayoutManager(linearLayoutManager);
 
-        clubs = new LinkedList<>();
-        clubHomeAdapter = new ClubHomeAdapter(clubs);
+        venues = new LinkedList<>();
+        clubHomeAdapter = new ClubHomeAdapter(venues);
 
         // give our custom adapter to the recycler view
         clubViewRecyclerView.setAdapter(clubHomeAdapter);
@@ -106,7 +107,10 @@ public class ClubActivity extends AppCompatActivity {
                 JsonParser parser = new JsonParser();
                 JsonObject obj = parser.parse(responseString).getAsJsonObject();
                 VenueResponse venueResponse =  gson.fromJson(obj, VenueResponse.class);
-                System.out.println("");
+
+                venues.addAll(venueResponse.getResponse().getVenues());
+                clubHomeAdapter.notifyDataSetChanged();
+
             }
         });
     }
