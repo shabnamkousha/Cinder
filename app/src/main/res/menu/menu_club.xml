@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/action_compose"
-        android:title="filter"
+        android:icon="@drawable/noti_red_2"
         app:showAsAction="ifRoom"
         />
 

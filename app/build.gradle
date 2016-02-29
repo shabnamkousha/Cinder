@@ -47,5 +47,8 @@ dependencies {
 
     compile 'com.foursquare:foursquare-android-oauth:1.0.3'
 
+    compile 'com.parse:parse-android:1.13.0'
+    compile 'com.parse:parseinterceptors:0.0.2'
+
 
 }

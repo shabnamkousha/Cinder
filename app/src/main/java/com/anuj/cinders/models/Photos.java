@@ -6,14 +6,14 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Specials {
+public class Photos {
 
     @SerializedName("count")
     @Expose
     private Integer count;
     @SerializedName("items")
     @Expose
-    private List<Object> items = new ArrayList<Object>();
+    private List<Item> items = new ArrayList<Item>();
 
     /**
      * 
@@ -38,7 +38,7 @@ public class Specials {
      * @return
      *     The items
      */
-    public List<Object> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
@@ -47,7 +47,7 @@ public class Specials {
      * @param items
      *     The items
      */
-    public void setItems(List<Object> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 
